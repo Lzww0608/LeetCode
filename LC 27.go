@@ -1,12 +1,12 @@
-func removeDuplicates(nums []int) int {
-    l, r, n := 0, 1, len(nums)
-    for r < n {
-        if nums[r] != nums[l] {
-            l++
-            nums[l] = nums[r]
+func removeElement(nums []int, val int) int {
+    n := len(nums)
+    i, j := 0, 0
+    for j < n {
+        if nums[j] != val {
+            nums[i] = nums[j]
+            i++
         }
-        r++
+        j++
     }
-
-    return l + 1
+    return i
 }
