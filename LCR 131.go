@@ -1,6 +1,6 @@
 func cuttingBamboo(n int) (ans int) {
     if n < 4 {
-        return 2
+        return n - 1
     }
 
     if n % 3 == 0 {
