@@ -1,4 +1,4 @@
-//Method One
+
 func isIdealPermutation(nums []int) bool {
     n := len(nums)
     minVal := nums[n-1]
@@ -11,13 +11,3 @@ func isIdealPermutation(nums []int) bool {
     return true
 
 }
-//Method Two
-class Solution {
-public:
-    bool isIdealPermutation(vector<int>& nums) {
-        for (int i = 0; i < nums.size(); i++)
-            if (abs(nums[i]-i) > 1) 
-                return false;
-        return true;
-    }
-};
