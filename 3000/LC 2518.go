@@ -4,7 +4,7 @@ func countPartitions(nums []int, k int) int {
     for _, x := range nums {
         sum += x
     }
-    if sum <= k {
+    if sum < k * 2 {
         return 0
     }
 
