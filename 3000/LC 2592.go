@@ -1,14 +1,8 @@
-func minimumAddedCoins(coins []int, target int) (ans int) {
-    sort.Ints(coins)
-    s, i := 1, 0
-    for s <= target {
-        if i < len(coins) && coins[i] <= s {
-            s += coins[i]
-            i++
-        } else {
-            s *= 2
-            ans++
-        }
+func maximizeGreatness(nums []int) (ans int) {
+    m := make(map[int]int)
+    for _, x := range nums {
+        m[x]++
+        ans = max(ans, m[x])
     }
-    return
+    return len(nums) - ans
 }
