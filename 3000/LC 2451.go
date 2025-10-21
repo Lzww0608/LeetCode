@@ -1,34 +1,33 @@
-
-import "reflect"
-func minOperations(a []int, b []int, k int) int64 {
-    if k == 0 {
-        if reflect.DeepEqual(a, b) {
-            return 0
-        }
-        return -1
+func oddString(words []string) string {
+    n := len(words)
+    if n <= 2 {
+        return words[0]
     }
-    cnt := 0
-    ans := 0
-    n := len(a)
+
+    m := len(words[0])
     for i := 0; i < n; i++ {
-        if abs(a[i] - b[i]) % k != 0 {
-            return -1
+        j, k := (i + 1) % n, (i + 2) % n 
+        a := make([]int, m - 1)
+        b := make([]int, m - 1)
+        c := make([]int, m - 1)
+        for l := 1; l < m; l++ {
+            a[l - 1] = int(words[i][l] - 'a') - int(words[i][l - 1] - 'a')
+            b[l - 1] = int(words[j][l] - 'a') - int(words[j][l - 1] - 'a')
+            c[l - 1] = int(words[k][l] - 'a') - int(words[k][l - 1] - 'a')
         }
-        cnt += (a[i] - b[i]) / k
-        ans += abs(a[i] - b[i]) / k
+
+        b1 := reflect.DeepEqual(a, b)
+        b2 := reflect.DeepEqual(b, c)
+        if b1 && b2 {
+            continue
+        } else if b1 {
+            return words[(i + 2) % n]
+        } else if b2 {
+            return words[i]
+        } else {
+            return words[(i + 1) % n]
+        }
     }
 
-    if cnt != 0 {
-        return -1
-    }
-
-    return int64(ans) / 2
-}
-
-func abs(x int) int {
-    if x < 0 {
-        return -x
-    }
-
-    return x
+    return ""
 }
